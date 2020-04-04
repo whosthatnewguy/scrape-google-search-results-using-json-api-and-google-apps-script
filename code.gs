@@ -1,6 +1,6 @@
 function gSearch(){
-  var CSE = "018397015358995751386:r4ou0nv1h5g"; //custom key
-  var KEY = "AIzaSyCIviW9osWSEwYZFhjXF0tYeLGWRazLAo4"; //custom key
+  var CSE = ""; //custom key
+  var KEY = ""; //custom key
   var api = "https://www.googleapis.com/customsearch/v1?key=" + KEY + "&cx=" + CSE + "&q=" + encodeURIComponent("cat");
   
 try {
