@@ -1,49 +1,34 @@
 
 
-
-
 function myFunction() {
   var CSE = "";
   var KEY = "";
   var params = {muteHttpExceptions: true};
   var urls = [];
 
-
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var s = ss.getSheetByName('Sheet1');
   var urlRange = s.getRange(1,3,s.getLastRow(),1).getValues();
  
-  for(i=0;i<=urlRange.length-1;i++){
+  for(i=0;i<urlRange.length;i++){
     var activeUrl = urlRange[i][0];
     var api = "https://www.googleapis.com/customsearch/v1?key=" + KEY + "&cx=" + CSE + "&q=" + encodeURIComponent(activeUrl);
     Logger.log(api);
-
-    try{
-      
-      var response = UrlFetchApp.fetch(api,{muteHttpExceptions: true});
-      
-
-      if(response.getResponseCode()==200){
-        var content = JSON.parse(response);
-
-        if(content.searchInformation.totalResults >0){
-          var count = content.items.length;
-
-          for(var i=0;i < count;i++){
-            var adding = (content.items[i].link);
-            Logger.log(content.items[i].snippet);
-            urls.push(adding);
-          }
-          
-        }
-        var writeRange = s.getRange(1,4);
-    writeRange.setValue(urls);
-          Logger.log(urls)
+    
+    var response = UrlFetchApp.fetch(api,{muteHttpExceptions: true});
+    var content = JSON.parse(response);
+    
+    for(var j=0;j < urlRange.length;j++){
+      var adding = (content.items[j].link);
+      Logger.log(content.items[j].link);
+      Logger.log(content.items[j].snippet);
+      urls.push([adding]);
       }
-      }catch(err){};
-
-}
-}
+    }
+    var range = s.getRange(1,4,16,1);
+    Logger.log(urls);
+    range.setValues(urls);
+    }
 
 function concat(location, terms){
   var ss = SpreadsheetApp.getActiveSpreadsheet();
