@@ -37,21 +37,22 @@ function generateQuery(){
   var urlRange = s.getRange(1,3,s.getLastRow(),1).getValues();
   var urls = [];
   
-  for(i=0; i<=urlRange.length ;i++){
+  for(i=0; i<=urlRange.length+1 ;i++){
     var q = urlRange[i];
-    Logger.log(q);
-
     var content1 = search(q);
-    
-    for(var j=0;j <= urlRange.length;j++){
+    var count = content1.items.length;
+    Logger.log(count);
+    Logger.log(content1.items);
+
+    for(var j=0;j < count;j++){
       var adding = (content1.items[j].link);
       // Logger.log(content1.items[j].link);
       // Logger.log(content1.items[j].snippet);
       urls.push([adding]);
-      Logger.log(urls);
       }
-      var range = s.getRange(1,4,s.getLastRow(),1);
+      var range = s.getRange(1,4+i,count,1);
       range.setValues(urls);
+      urls = [];
     }
     }
 
