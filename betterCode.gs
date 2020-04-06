@@ -1,3 +1,16 @@
+/**
+ * CSE is limited to 100 queries per day...$5 per 1000 after that
+ * Columns containing concatenated locations and search terms
+ * must be adjusted @ lines 42 & 58
+ *
+ */
+
+function onOpen(){
+  var app = SpreadsheetApp.getUi();
+  app.createMenu('URLs')
+  .addItem('Return URLs', 'generateQuery')
+  .addToUi();
+}
 
 function search(q){
   var urlTemplate = "https://www.googleapis.com/customsearch/v1?key=%KEY%&cx=%CX%&q=%Q%";
@@ -32,17 +45,19 @@ function search(q){
 }
 
 function generateQuery(){
+  //load active spreadsheet & range of text
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var s = ss.getSheetByName('Sheet1');
   var urlRange = s.getRange(1,3,s.getLastRow(),1).getValues();
   var urls = [];
   
-  for(i=0; i<=urlRange.length+1 ;i++){
+  //loop thru JSON object 
+  for(i=0; i<=urlRange.length-1;i++){
     var q = urlRange[i];
     var content1 = search(q);
     var count = content1.items.length;
     Logger.log(count);
-    Logger.log(content1.items);
+    // Logger.log(content1.items);
 
     for(var j=0;j < count;j++){
       var adding = (content1.items[j].link);
@@ -56,6 +71,7 @@ function generateQuery(){
     }
     }
 
+//concatenate text (if needed)
 function concat(location, terms){
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var s = ss.getSheetByName('Sheet1');
