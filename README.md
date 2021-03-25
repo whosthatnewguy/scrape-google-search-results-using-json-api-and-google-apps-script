@@ -12,32 +12,36 @@ The script can be used by populating the first two columns wth separate query pa
 
 First, we initialize our API endpoint, personal API credentials, a Custom Search Engine ID, and build a custom URL
 ```javascript
-function search(q){
-  var urlTemplate = "https://www.googleapis.com/customsearch/v1?key=%KEY%&cx=%CX%&q=%Q%";
-  var ApiKey = "YOUR_API_KEY";
-  var searchEngineID = "YOUR_SEARCH_ENGINE_ID";
-  var url = urlTemplate
-    .replace("%KEY%", encodeURIComponent(ApiKey))
-    .replace("%CX%", encodeURIComponent(searchEngineID))
-    .replace("%Q%", encodeURIComponent(q));
+function search(q) {
+    var urlTemplate = "https://www.googleapis.com/customsearch/v1?key=%KEY%&cx=%CX%&q=%Q%";
+    var ApiKey = "YOUR_API_KEY";
+    var searchEngineID = "YOUR_SEARCH_ENGINE_ID";
+    var url = urlTemplate
+        .replace("%KEY%", encodeURIComponent(ApiKey))
+        .replace("%CX%", encodeURIComponent(searchEngineID))
+        .replace("%Q%", encodeURIComponent(q));
 
-  var params = {
-    muteHttpExceptions: true
+    var params = {
+        muteHttpExceptions: true
     };
 ```
-Then, 
+Then, we build the URL that `generateQuery` function below will iterate through
 ```javascript
-    //search query
-    var response = UrlFetchApp.fetch(url,params);
-    // Logger.log(response);
-    var respCode = response.getResponseCode();
-
-    if(respCode !== 200){
-      throw new Error ("Error" +respCode + " " + response.getContentText());
-    } else {
-      //search successful
-      var content = JSON.parse(response);
-    }
-    return content;
+var response = UrlFetchApp.fetch(url, params);
+var respCode = response.getResponseCode();
+if (respCode !== 200) {
+    throw new Error("Error" + respCode + " " + response.getContentText());
+} else {
+    var content = JSON.parse(response);
 }
+return content;
+}
+```
+Here, we load the active spreadsheet, the range of queries we want to search and scrape, and initialize an array to batch push the queries to:
+```javascript
+function generateQuery() {
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var s = ss.getSheetByName('Sheet1');
+    var urlRange = s.getRange(1, 3, s.getLastRow(), 1).getValues();
+    var urls = [];
 ```
