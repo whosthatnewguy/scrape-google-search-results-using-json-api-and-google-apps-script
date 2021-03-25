@@ -14,8 +14,8 @@ First, we initialize our API endpoint, personal API credentials, a Custom Search
 ```javascript
 function search(q){
   var urlTemplate = "https://www.googleapis.com/customsearch/v1?key=%KEY%&cx=%CX%&q=%Q%";
-  var ApiKey = "AIzaSyCIviW9osWSEwYZFhjXF0tYeLGWRazLAo4";
-  var searchEngineID = "018397015358995751386:r4ou0nv1h5g";
+  var ApiKey = "YOUR_API_KEY";
+  var searchEngineID = "YOUR_SEARCH_ENGINE_ID";
   var url = urlTemplate
     .replace("%KEY%", encodeURIComponent(ApiKey))
     .replace("%CX%", encodeURIComponent(searchEngineID))
