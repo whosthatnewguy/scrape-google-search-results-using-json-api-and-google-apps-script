@@ -25,3 +25,19 @@ function search(q){
     muteHttpExceptions: true
     };
 ```
+Then, 
+```javascript
+    //search query
+    var response = UrlFetchApp.fetch(url,params);
+    // Logger.log(response);
+    var respCode = response.getResponseCode();
+
+    if(respCode !== 200){
+      throw new Error ("Error" +respCode + " " + response.getContentText());
+    } else {
+      //search successful
+      var content = JSON.parse(response);
+    }
+    return content;
+}
+```
