@@ -45,3 +45,20 @@ function generateQuery() {
     var urlRange = s.getRange(1, 3, s.getLastRow(), 1).getValues();
     var urls = [];
 ```
+Then, we call the `search()` method created above, iterate through each batched URL, and make an API call:
+```javascript
+for (i = 0; i <= urlRange.length - 1; i++) {
+    var q = urlRange[i];
+    var content1 = search(q);
+    var count = content1.items.length;
+    Logger.log(count);
+    for (var j = 0; j < count; j++) {
+        var adding = (content1.items[j].link);
+        urls.push([adding]);
+    }
+    var range = s.getRange(1, 4 + i, count, 1);
+    range.setValues(urls);
+    urls = [];
+}
+}
+```
