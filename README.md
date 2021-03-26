@@ -1,4 +1,4 @@
-# Bulk scraping Google search results into a spreadsheet with Google App Script
+# Scraping Google search results into a spreadsheet using Google App Script & JSON API
 ## Overview
 This Google App Script allows you to fill a spreadsheet with queries and, utilizing the Google CSE endpoint, scrape the first ten web results for each query.
 
