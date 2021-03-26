@@ -16,7 +16,7 @@ Casting and forging supplier | China | `==iferror(concatenate(A2, " ", B2))` | -
 Casting and forging supplier | Korea | `==iferror(concatenate(A3, " ", B3))` | -- | -- |
 Casting and forging supplier | Germany | `==iferror(concatenate(A4, " ", B4))` | -- | -- |
 
-As for the scrip - First, we initialize our API endpoint, API credentials, CSE ID, and build a custom URL
+In the Google Apps Script IDE, first, we initialize our API endpoint, API credentials, CSE ID, and build a custom URL
 ```javascript
 function search(q) {
     var urlTemplate = "https://www.googleapis.com/customsearch/v1?key=%KEY%&cx=%CX%&q=%Q%";
