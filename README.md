@@ -21,29 +21,20 @@ As for the scrip - First, we initialize our API endpoint, API credentials, CSE I
 function search(q) {
     var urlTemplate = "https://www.googleapis.com/customsearch/v1?key=%KEY%&cx=%CX%&q=%Q%";
 
-    //credentials & search engine ID
-    var ApiKey = "AIzaSyCIviW9osWSEwYZFhjXF0tYeLGWRazLAo4";
-    var searchEngineID = "018397015358995751386:r4ou0nv1h5g";
-
-    //custom url
+    var ApiKey = "YOUR_API_KEY";
+    var searchEngineID = "YOUR_CSE_ID";
     var url = urlTemplate
         .replace("%KEY%", encodeURIComponent(ApiKey))
         .replace("%CX%", encodeURIComponent(searchEngineID))
         .replace("%Q%", encodeURIComponent(q));
-
     var params = {
         muteHttpExceptions: true
     };
-
-    //search query
     var response = UrlFetchApp.fetch(url, params);
-    // Logger.log(response);
     var respCode = response.getResponseCode();
-
     if (respCode !== 200) {
         throw new Error("Error" + respCode + " " + response.getContentText());
     } else {
-        //search successful
         var content = JSON.parse(response);
     }
     return content;
