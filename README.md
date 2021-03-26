@@ -3,7 +3,7 @@
 This Google App Script allows you to fill a spreadsheet with queries and, utilizing the Google CSE endpoint, scrape the first ten web results for each query.
 
 ## Description 
-TLDR; Fill up a spreadsheet with queries, and return their highest traffic search results.
+TLDR; fill up a spreadsheet with queries, and return their highest traffic search results.
 
 I developed this script with the intent of scraping the highest traffic query results for a list of terms stored in a spreadsheet.
 
