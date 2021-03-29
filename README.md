@@ -16,7 +16,7 @@ Casting and forging supplier | China | `==iferror(concatenate(A2, " ", B2))` | -
 Casting and forging supplier | Korea | `==iferror(concatenate(A3, " ", B3))` | -- | -- |
 Casting and forging supplier | Germany | `==iferror(concatenate(A4, " ", B4))` | -- | -- |
 
-In the Google Apps Script IDE, first, we initialize our API endpoint, API credentials, CSE ID, and build a custom URL
+In the Google Apps Script IDE, first, we initialize our API endpoint, API credentials, CSE ID, and build a custom URL:
 ```javascript
 function search(q) {
     var urlTemplate = "https://www.googleapis.com/customsearch/v1?key=%KEY%&cx=%CX%&q=%Q%";
@@ -49,7 +49,7 @@ function generateQuery() {
     var resultsRange = parseInt(s.getRange(1, 5).getValue());
     var urls = [];
 ```
-Then, we call the `search()` function and JSON API to iterate through each object, and write the URLs to the spreadsheet with the `.setValues()` method.
+Then, we call the `search()` function and JSON API to iterate through each object, and write the URLs to the spreadsheet with the `.setValues()` method:
 ```javascript
 for (i = 0; i <= urlRange.length; i++) {
     var q = urlRange[i];
