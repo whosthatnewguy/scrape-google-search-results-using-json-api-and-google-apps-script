@@ -74,7 +74,7 @@ for (i = 0; i <= urlRange.length; i++) {
 [Programmable Search Engine](https://developers.google.com/custom-search)
 
 ## Author
-[jopringle](https://github.com/whosthatnewguy/GAS-revisions)
+[jopringle](https://github.com/whosthatnewguy)
 
 Please feel free to contact me with any suggestions or questions.
 
