@@ -65,7 +65,7 @@ for (i = 0; i <= urlRange.length; i++) {
 }
 ```
 ## Limitations
-* The default number of queries the JSON API will return per page is 10, so to access more pages and results, one would need to fiddle with the `&start=` CGI parameter when building the URL.
+* The default number of queries the JSON API will return per page is 10, so to access more pages and results, one would need to fiddle with the `&start=` URI parameter when building the URL.
 * The Custom Search Engine Service only allows 100 queries per day. After that, a fee is paid per 1000 queries.
 
 ## References 
